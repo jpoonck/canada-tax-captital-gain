@@ -1,6 +1,8 @@
 */.vscode/
-*/tmp/
-*.pyc
+**/tmp/
 *.log
 *.tmp
 *.swp
+
+*/__pycache__/
+*.pyc

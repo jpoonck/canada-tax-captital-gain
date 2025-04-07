@@ -1,6 +1,6 @@
 import pandas as pd
 
-def load_data(file_path, numeric_columns=None):
+def load_data(file_path, numeric_columns=[]):
     # Read the CSV file
     df = pd.read_csv(file_path, header=0, delimiter=",", low_memory=False)
     for col in numeric_columns:
