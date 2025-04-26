@@ -16,6 +16,7 @@ import csv
 #     }
 # }
 
+
 def load_data(file_path, type_configs):
     """
     Loads data from a CSV file where the first row of each type specifies column names.
@@ -30,7 +31,7 @@ def load_data(file_path, type_configs):
     """
     data = {}
     column_specs = {}
-    
+
     with open(file_path, 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         for row in reader:
