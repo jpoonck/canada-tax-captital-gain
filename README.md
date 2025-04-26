@@ -10,12 +10,18 @@ This project is designed to calculate capital gains, losses, and tax implication
     pip install -r requirements.txt
     ```
 
-2. Excute the following command:
-
-    ```sh
-    py src/main.py
-    ```
-
 ## Usage
 
 Place your IBKR trading data in the `data/` directory and run the scripts in the `src/` directory to perform analysis and summary.
+
+## Command Line Arguments
+
+The script accepts a command-line argument to specify the path to the trades activity CSV file:
+
+*   `--file`: Path to the trades activity CSV file. Defaults to `./data/test.csv`.
+
+Example:
+
+```sh
+py main.py --file ./data/my_trades.csv
+```
