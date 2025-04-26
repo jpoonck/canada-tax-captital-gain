@@ -1,8 +1,8 @@
 import pandas as pd
 from data_loader import load_data
 
-def initial_data_summary(performance_summary_path):
-    performance_summary = load_data(performance_summary_path, numeric_columns=['Prior Quantity', 'Prior Price', 'Current Quantity', 'Current Price'])
+def initial_data_summary(performance_summary):
+    # Filter performance summary for stocks
     stocks_summary = performance_summary[performance_summary['Asset Category'] == 'Stocks']
    
     # Initialize a dictionary to hold initial quantities and prices
@@ -16,8 +16,7 @@ def initial_data_summary(performance_summary_path):
         }
     return initial_data
 
-def open_positions_summary(open_position_path, initial_data):
-    open_positions = load_data(open_position_path, numeric_columns=['Quantity', 'Cost Basis', "Cost Price", "Close Price", "Value"])
+def open_positions_summary(open_positions, initial_data):
     for symbol in initial_data.keys():
         symbol_data = open_positions[open_positions['Symbol'] == symbol]
         if not symbol_data.empty:
@@ -31,9 +30,8 @@ def open_positions_summary(open_position_path, initial_data):
     return initial_data
 
 
-def trade_data_summary(trades_path, symbols):
-     # Load trades data
-    trades_data = load_data(trades_path, numeric_columns=['Quantity', 'Proceeds', 'Comm/Fee'])
+def trade_data_summary(trades_data, symbols):
+    # Filter trades data for stocks
     stocks_trades = trades_data[(trades_data['Asset Category'] == 'Stocks') & (trades_data['Header'] == 'Data')]
     
     # Initialize a dictionary to hold trades data
@@ -57,13 +55,14 @@ def trade_data_summary(trades_path, symbols):
         }
     return trades_summary
 
-def process_trades_data(performance_summary_path, open_positions_path, trades_path):
-    initial_summary = initial_data_summary(performance_summary_path)
-    initial_summary = open_positions_summary(open_positions_path, initial_summary)
-    trades_summary = trade_data_summary(trades_path, initial_summary.keys())
+def process_trades_data(trades_activity_path_path, type_configs):
+    trades_activity = load_data(trades_activity_path_path, type_configs)
+    initial_summary = initial_data_summary(trades_activity['performance_summary'])
+    initial_summary = open_positions_summary(trades_activity['open_positions'], initial_summary)
+    trades_summary = trade_data_summary(trades_activity['trades'], initial_summary.keys())
     
     # Validate final quantities
-    trade_report_resutls = []
+    trades_tax_resutls = []
     
     for symbol, init_data in initial_summary.items():
         trade_data = trades_summary[symbol]
@@ -74,7 +73,7 @@ def process_trades_data(performance_summary_path, open_positions_path, trades_pa
         total_tax_buy = init_data['initial_values'] + trade_data['total_buy'] + open_position_value
         total_sell = trade_data['total_sell']
         
-        trade_report_resutls.append({
+        trades_tax_resutls.append({
             'symbol': symbol,
             'initial_quantity': initial_quantity,
             'buy_quantity': trade_data['total_buy_quantity'],
@@ -87,4 +86,4 @@ def process_trades_data(performance_summary_path, open_positions_path, trades_pa
             'current_values': init_data.get('open_position', {}).get('value', 0)
         })
     
-    return pd.DataFrame(trade_report_resutls)
+    return pd.DataFrame(trades_tax_resutls)

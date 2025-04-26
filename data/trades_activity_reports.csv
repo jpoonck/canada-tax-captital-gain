@@ -1,0 +1,9 @@
+Mark-to-Market Performance Summary,Header,Asset Category,Symbol,Prior Quantity,Current Quantity,Prior Price,Current Price,Mark-to-Market P/L Position,Mark-to-Market P/L Transaction,Mark-to-Market P/L Commissions,Mark-to-Market P/L Other,Mark-to-Market P/L Total,Code
+Mark-to-Market Performance Summary,Data,Stocks,AAPL,0,0,--,--,-143.55,18.05,-3.0163504,0,-128.5163504,
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Stocks,USD,AMD,67,1,139.935371388,9375.669883,122.44,8203.48,-1172.189883,
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Trades,Data,Order,Stocks,USD,AAPL,"2024-02-14, 16:12:24",6,182,184.15,-1092,-1,1093,0,12.9,O
+Trades,Data,Order,Stocks,USD,AAPL,"2024-03-08, 08:22:01",5,169.81,170.73,-849.05,-1,850.05,0,4.6,O
+Trades,Data,Order,Stocks,USD,AAPL,"2024-04-19, 15:21:58",-11,165.05,165,1815.55,-1.0163504,-1943.05,-128.51635,0.55,C
+Trades,SubTotal,,Stocks,USD,AAPL,,0,,,-125.5,-3.0163504,0,-128.51635,18.05,
