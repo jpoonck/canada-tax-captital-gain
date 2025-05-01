@@ -19,6 +19,7 @@ Place your IBKR trading data in the `data/` directory and run the scripts in the
 The script accepts a command-line argument to specify the path to the trades activity CSV file:
 
 * `--file`: Path to the trades activity CSV file. Defaults to `./data/test.csv`.
+* `--output`: Path to save the output report CSV file. Defaults to `./tmp/trades_tax_report.csv`
 * `--rate`: Exchange rate to convert report to target currency. Defaults to 1.3698.
 
 Example:
